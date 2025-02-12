@@ -12,29 +12,39 @@
             <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
             <table>
                 <tr>
-                <td>
+                    <td>
                     <asp:Label ID="txtUsernamelbl" runat="server" Text="Username: "></asp:Label> 
-                </td>
-                <td colspan ="2">
+                    </td>
+                    <td colspan ="2">
                     <asp:TextBox ID="username" runat="server"></asp:TextBox>
-                </td></tr>
-            </table>
-            <table> <tr>
-                <td>
+                    </td></tr>
+            
+                 <tr>
+                    <td>
                     <asp:Label ID="txtPasswordlbl" runat="server" Text="Password: "></asp:Label> 
-                </td>
-                <td colspan ="2">
+                    </td>
+                     <td colspan ="2">
                     <asp:TextBox ID="password" runat="server" TextMode="Password"></asp:TextBox>
-                </td></tr>
-            </table>
-            <table>
+                    </td>
+
+                 </tr>
+           
                 <tr>   
-                <td >
+                    <td >
                  
-                </td>
-                <td colspan ="3">
+                    </td>
+                    <td colspan ="3">
                     <asp:Button ID="Loginbtn" runat="server" Text="Log in" OnClick="Loginbtn_Click" />
-                </td> 
+                    </td> 
+
+                </tr>
+                <tr>   
+                    <td >
+                 
+                    </td>
+                    <td colspan ="3">
+                        <asp:Label ID="Errorlabel" runat="server" Text="Label"></asp:Label>
+                    </td> 
 
                 </tr>
             </table>
