@@ -32,10 +32,14 @@ namespace OJTTracker
                         {
                             reader.Read();
                             string role = reader["Role"].ToString();
+                            int userId = Convert.ToInt32(reader["UserID"]); // Get UserID
 
-                            Session["UserEmail"] = username.Text;
+                            // Store UserID and Role in session
+                            Session["UserID"] = userId;
                             Session["UserRole"] = role;
+                            Session["UserEmail"] = username.Text;
 
+                            reader.Close();
                             if (role == "Admin")
                             {
                                 Response.Redirect("AdminDashboard.aspx");
