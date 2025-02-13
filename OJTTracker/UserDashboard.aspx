@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>User Dashboard</title>
     <style>
         body {
@@ -13,7 +14,8 @@
             padding: 0;
         }
         .container {
-            width: 80%;
+            width: 90%;
+            max-width: 600px;
             margin: 30px auto;
             background: white;
             padding: 20px;
@@ -24,8 +26,8 @@
             margin-bottom: 20px;
         }
         .card {
-            width: 50%;
-            margin: 0 auto 20px auto;
+            width: 100%;
+            margin-bottom: 20px;
             padding: 15px;
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -39,28 +41,38 @@
             font-weight: bold;
         }
         .button-container {
-            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .button-container input {
-            padding: 10px 15px;
+            flex: 1 1 40%;
+            min-width: 120px;
             margin: 5px;
+        }
+        .btn {
+            color: white;
+            padding: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
         }
-        .btn-green { background-color: green; color: white; }
-        .btn-yellow { background-color: orange; color: white; }
-        .btn-blue { background-color: blue; color: white; }
-        .btn-red { background-color: red; color: white; }
+        .btn-green { background-color: green; }
+        .btn-yellow { background-color: orange; }
+        .btn-blue { background-color: blue; }
+        .btn-red { background-color: red; }
         .btn-green:hover { background-color: darkgreen; }
         .btn-yellow:hover { background-color: darkorange; }
         .btn-blue:hover { background-color: darkblue; }
         .btn-red:hover { background-color: darkred; }
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
         table {
             width: 100%;
+            min-width: 500px;
             border-collapse: collapse;
-            margin-top: 10px;
         }
         th, td {
             border: 1px solid #ccc;
@@ -82,26 +94,25 @@
     <form id="form1" runat="server">
         <div class="container">
             <h2>⏳ Time Tracking Dashboard</h2>
-
+            
             <!-- Total Hours Worked -->
             <div class="card">
-                <div class="card-header">Total Hours Worked Today</div>
+                <div class="card-header">Total Hours Worked</div>
                 <h3 style="color: #007bff; font-weight: bold;">
                     <asp:Label ID="lblTotalHours" runat="server" Text="0 hrs"></asp:Label>
                 </h3>
             </div>
-
+            
             <!-- Time In/Out Buttons -->
             <div class="button-container">
-                <asp:Button ID="btnTimeIn" runat="server" CssClass="btn-green" Text="🕒 Time In" OnClick="btnTimeIn_Click" />
-                <asp:Button ID="btnBreakIn" runat="server" CssClass="btn-yellow" Text="☕ Break In" OnClick="btnBreakIn_Click" />
-                <asp:Button ID="btnBreakOut" runat="server" CssClass="btn-blue" Text="🍽️ Break Out" OnClick="btnBreakOut_Click" />
-                <asp:Button ID="btnTimeOut" runat="server" CssClass="btn-red" Text="🚪 Time Out" OnClick="btnTimeOut_Click" />
+                <asp:Button ID="btnTimeIn" runat="server" CssClass="btn btn-green" Text="🕒 Time In" OnClick="btnTimeIn_Click" />
+                <asp:Button ID="btnBreakIn" runat="server" CssClass="btn btn-yellow" Text="☕ Break In" OnClick="btnBreakIn_Click" />
+                <asp:Button ID="btnBreakOut" runat="server" CssClass="btn btn-blue" Text="🍽️ Break Out" OnClick="btnBreakOut_Click" />
+                <asp:Button ID="btnTimeOut" runat="server" CssClass="btn btn-red" Text="🚪 Time Out" OnClick="btnTimeOut_Click" />
             </div>
-
+            
             <!-- Time Log Table -->
-            <div class="card">
-                <div class="card-header">⏱ Time Log History</div>
+            <div class="table-container">
                 <asp:GridView ID="gvTimeLogs" runat="server" CssClass="table" AutoGenerateColumns="False">
                     <Columns>
                         <asp:BoundField DataField="TimeIn" HeaderText="Time In" />
@@ -112,7 +123,7 @@
                     </Columns>
                 </asp:GridView>
             </div>
-
+            
             <!-- Message Label -->
             <div class="message">
                 <asp:Label ID="lblMessage" runat="server"></asp:Label>

@@ -42,10 +42,9 @@ namespace OJTTracker
 
             // **Fetch Total Hours Worked Today**
             string totalHoursQuery = @"
-        SELECT SUM(
-            (DATEDIFF(MINUTE, TimeIn, TimeOut) - 
-            COALESCE(DATEDIFF(MINUTE, BreakIn, BreakOut), 0)) / 60.0
-        ) AS TotalHoursWorked
+                SELECT SUM(
+                 (DATEDIFF(MINUTE, TimeIn, TimeOut) - 
+                    COALESCE(DATEDIFF(MINUTE, BreakIn, BreakOut), 0)) / 60.0) AS TotalHoursWorked
         FROM TimeLogs 
         WHERE UserID = @UserID AND CAST(LogDate AS DATE) = CAST(GETDATE() AS DATE)";
 
