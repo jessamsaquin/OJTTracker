@@ -43,7 +43,7 @@
                  
                     </td>
                     <td colspan ="3">
-                        <asp:Label ID="Errorlabel" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="Errorlabel" runat="server" Text=""></asp:Label>
                     </td> 
 
                 </tr>
