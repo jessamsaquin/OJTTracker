@@ -83,6 +83,24 @@ namespace OJTTracker
                 // Update the label to show correct total work hours
                 lblTotalHours.Text = totalHours.ToString("F2");
             }
+            string totalOverallHoursQuery = @"
+        SELECT SUM(
+            (DATEDIFF(MINUTE, TimeIn, TimeOut) - 
+            COALESCE(DATEDIFF(MINUTE, BreakIn, BreakOut), 0)) / 60.0) AS TotalOverallHours
+        FROM TimeLogs 
+        WHERE UserID = @UserID";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(totalOverallHoursQuery, conn))
+            {
+                cmd.Parameters.AddWithValue("@UserID", Session["UserID"]);
+                conn.Open();
+                object result = cmd.ExecuteScalar();
+                double totalOverallHours = result != DBNull.Value ? Convert.ToDouble(result) : 0;
+
+                // Update the label for total overall work hours
+                lblTotalHoursWorked.Text = totalOverallHours.ToString("F2") + " hrs";
+            }
         }
 
 

@@ -4,97 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="UserDashboard.css" />
     <title>User Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 90%;
-            max-width: 600px;
-            margin: 30px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            align-content: center;
-        }
-        h2 {
-            margin-bottom: 20px;
-        }
-        .card {
-            width: 97%;
-            max-width: 500px;
-            margin: 0 auto 20px auto;
-            padding: 15px;
-            border: 1px solid red;
-            border-radius: 8px;
-            background-color: white;
-            box-sizing: border-box;
-        }
-        .card-header {
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            width: 98%;
-            text-align: center;
-            box-sizing: border-box;
-        }
-        .button-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .button-container input {
-            flex: 1 1 40%;
-            min-width: 120px;
-            margin: 5px;
-        }
-        .btn {
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .btn-green { background-color: green; }
-        .btn-yellow { background-color: orange; }
-        .btn-blue { background-color: blue; }
-        .btn-red { background-color: red; }
-        .btn-green:hover { background-color: darkgreen; }
-        .btn-yellow:hover { background-color: darkorange; }
-        .btn-blue:hover { background-color: darkblue; }
-        .btn-red:hover { background-color: darkred; }
-        .table-container {
-            width: 100%;
-            overflow-x: auto;
-        }
-        table {
-            width: 100%;
-            min-width: 500px;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color: #333;
-            color: white;
-        }
-        .message {
-            color: red;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-    </style>
+    
 </head>
 <body>
     <div class="profile">
@@ -112,12 +24,21 @@
             
             <!-- Total Hours Worked -->
             <div class="card">
-                <div class="card-header">Total Hours Worked</div>
-                <h3 style="color: #007bff; font-weight: bold;">
-                    <asp:Label ID="lblTotalHours" runat="server" Text="0 hrs"></asp:Label>
-                </h3>
-            </div>
-            
+    <div class="card1"> 
+        <div class="card-header">Total Hours Today</div>
+        <h3 style="color: #007bff; font-weight: bold;">
+            <asp:Label ID="lblTotalHours" runat="server" Text="0 hrs"></asp:Label>
+        </h3>
+    </div>
+    
+    <div class="card2"> 
+        <div class="card-header">Total Hours Worked</div>
+        <h3 style="color: #007bff; font-weight: bold;">
+            <asp:Label ID="lblTotalHoursWorked" runat="server" Text="0 hrs"></asp:Label>
+        </h3>
+    </div>
+</div>
+
             <!-- Time In/Out Buttons -->
             <div class="button-container">
                 <asp:Button ID="btnTimeIn" runat="server" CssClass="btn btn-green" Text="🕒 Time In" OnClick="btnTimeIn_Click" />
