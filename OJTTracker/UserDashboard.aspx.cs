@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web.UI.WebControls;
 
 namespace OJTTracker
 {
@@ -19,6 +18,31 @@ namespace OJTTracker
                     return;
                 }
                 LoadTimeLogs();
+                LoadUserProfile();
+            }
+        }
+
+        private void LoadUserProfile()
+        {
+            string userId = Session["UserID"].ToString();
+            string conn = "Data Source=JESSA\\SQLEXPRESS;Initial Catalog=OJTTrackerDB;Integrated Security=True;Encrypt=False";
+
+            using (SqlConnection connConn = new SqlConnection(conn))
+            {
+                connConn.Open();
+                string query = " SELECT Name FROM Users Where UserID = @UserID";
+                using (SqlCommand cmd = new SqlCommand(query, connConn))
+                {
+                    cmd.Parameters.AddWithValue("@UserID", userId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        string name = reader["Name"].ToString();
+
+                        lblProfilename.Text = name;
+                    }
+                }
             }
         }
 
@@ -45,8 +69,8 @@ namespace OJTTracker
                 SELECT SUM(
                  (DATEDIFF(MINUTE, TimeIn, TimeOut) - 
                     COALESCE(DATEDIFF(MINUTE, BreakIn, BreakOut), 0)) / 60.0) AS TotalHoursWorked
-        FROM TimeLogs 
-        WHERE UserID = @UserID AND CAST(LogDate AS DATE) = CAST(GETDATE() AS DATE)";
+                FROM TimeLogs 
+                WHERE UserID = @UserID AND CAST(LogDate AS DATE) = CAST(GETDATE() AS DATE)";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(totalHoursQuery, conn))

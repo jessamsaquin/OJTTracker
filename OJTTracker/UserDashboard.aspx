@@ -91,7 +91,16 @@
     </style>
 </head>
 <body>
+    <div class="profile">
+            <div class="user-prof">
+                <asp:Image ID="Image1" runat="server" />
+                <asp:Label ID="lblProfilename" runat="server" Text=""></asp:Label>
+    </div>
+    </div>
+
     <form id="form1" runat="server">
+        
+        
         <div class="container">
             <h2>⏳ Time Tracking Dashboard</h2>
             
