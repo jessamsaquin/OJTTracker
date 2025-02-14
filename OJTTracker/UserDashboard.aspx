@@ -21,17 +21,20 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            align-content: center;
         }
         h2 {
             margin-bottom: 20px;
         }
         .card {
-            width: 100%;
-            margin-bottom: 20px;
+            width: 97%;
+            max-width: 500px;
+            margin: 0 auto 20px auto;
             padding: 15px;
-            border: 1px solid #ccc;
+            border: 1px solid red;
             border-radius: 8px;
             background-color: white;
+            box-sizing: border-box;
         }
         .card-header {
             background-color: #007bff;
@@ -39,6 +42,9 @@
             padding: 10px;
             font-size: 18px;
             font-weight: bold;
+            width: 98%;
+            text-align: center;
+            box-sizing: border-box;
         }
         .button-container {
             display: flex;
