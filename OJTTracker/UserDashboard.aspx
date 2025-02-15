@@ -25,15 +25,15 @@
             <!-- Total Hours Worked -->
             <div class="card">
     <div class="card1"> 
-        <div class="card-header">Total Hours Today</div>
-        <h3 style="color: #007bff; font-weight: bold;">
+        <div class="card-header">Hours Today</div>
+        <h3 style="color: white; font-weight: bold;">
             <asp:Label ID="lblTotalHours" runat="server" Text="0 hrs"></asp:Label>
         </h3>
     </div>
     
     <div class="card2"> 
-        <div class="card-header">Total Hours Worked</div>
-        <h3 style="color: #007bff; font-weight: bold;">
+        <div class="card-header">Total Hours</div>
+        <h3 style="color: white; font-weight: bold;">
             <asp:Label ID="lblTotalHoursWorked" runat="server" Text="0 hrs"></asp:Label>
         </h3>
     </div>
