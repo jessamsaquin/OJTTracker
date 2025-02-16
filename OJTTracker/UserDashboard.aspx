@@ -7,9 +7,20 @@
     <link rel="stylesheet" type="text/css" href="UserDashboard.css" />
     <title>User Dashboard</title>
     
+    <style type="text/css">
+        .auto-style1 {
+            height: 30px;
+            background-color: white;
+            position: fixed;
+            top: 0px;
+            width: 100%;
+            
+        }
+    </style>
+    
 </head>
 <body>
-    <div class="profile">
+    <div class="auto-style1">
             <div class="user-prof">
                 <asp:Image ID="Image1" runat="server" />
                 <asp:Label ID="lblProfilename" runat="server" Text=""></asp:Label>
