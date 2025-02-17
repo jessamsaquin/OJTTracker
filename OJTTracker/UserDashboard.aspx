@@ -45,21 +45,22 @@
     
 </head>
 <body>
-    <div class="auto-style1">
+   
+
+
+    <form id="form1" runat="server">
+         <div class="auto-style1">
   <div class="user-prof">
     <div class="left-side">
         <asp:Image ID="Image1" runat="server" />
         <asp:Label ID="lblProfilename" runat="server" Text=""></asp:Label>
     </div>
     <div class="right-side">
-        <asp:Label ID="lblLogout" runat="server" Text="Logoout" class="logout-label"></asp:Label>
+        <asp:LinkButton ID="Logout" runat="server" Text="Logout" CssClass="logout-label" OnClick="LblLogout"></asp:LinkButton>
+        
+</div>
     </div>
   </div>
-</div>
-
-
-    <form id="form1" runat="server">
-        
         
         <div class="container">
             <h2>⏳ Time Tracking Dashboard</h2>

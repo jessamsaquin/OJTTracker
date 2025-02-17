@@ -24,6 +24,7 @@ namespace OJTTracker
             }
            
         }
+        
 
         private void LoadUserProfile()
         {
@@ -164,6 +165,14 @@ namespace OJTTracker
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        protected void LblLogout(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Session.Clear();
+
+            Response.Redirect("Login.aspx");
         }
     }
 }
