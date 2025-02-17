@@ -1,4 +1,6 @@
-﻿body {
+﻿
+
+body {
     font-family: Arial, sans-serif;
     background-color: #0c0a33;
     text-align: center;
@@ -6,6 +8,8 @@
     padding: 0;
     
 }
+
+
 
 .container {
     width: 90%;

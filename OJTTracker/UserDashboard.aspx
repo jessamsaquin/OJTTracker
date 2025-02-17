@@ -6,26 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="UserDashboard.css" />
     <title>User Dashboard</title>
+      
     
     <style type="text/css">
-        .auto-style1 {
-            height: 30px;
-            background-color: white;
-            position: fixed;
-            top: 0px;
-            width: 100%;
-            
-        }
+       .auto-style1 {
+        height: 35px;
+        color: black;
+        background-color: white;
+        position:fixed;
+        width: 100%;
+        top: 0;
+
+    }
+    .user-prof {
+        display: flex;
+        justify-content: space-between; /* Place items on opposite ends */
+        align-items: center;
+        padding: 10px;
+        background-color: #f1f1f1;
+    }
+    .left-side {
+        display: flex;
+        align-items: center;
+    }
+    .right-side {
+        display: flex;
+        align-items: center;
+    }
+    .logout-label {
+        background-color: #3d3b68;
+        color: white;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 10px;
+    }
     </style>
+  
     
 </head>
 <body>
     <div class="auto-style1">
-            <div class="user-prof">
-                <asp:Image ID="Image1" runat="server" />
-                <asp:Label ID="lblProfilename" runat="server" Text=""></asp:Label>
+  <div class="user-prof">
+    <div class="left-side">
+        <asp:Image ID="Image1" runat="server" />
+        <asp:Label ID="lblProfilename" runat="server" Text=""></asp:Label>
     </div>
+    <div class="right-side">
+        <asp:Label ID="lblLogout" runat="server" Text="Logoout" class="logout-label"></asp:Label>
     </div>
+  </div>
+</div>
+
 
     <form id="form1" runat="server">
         
