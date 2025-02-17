@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Web;
 
 namespace OJTTracker
 {
@@ -7,7 +8,15 @@ namespace OJTTracker
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Cache.SetExpires(DateTime.Now.AddMinutes(-1));
+            Response.Cache.SetCacheability(HttpCacheability.NoCache); // Corrected line
+            Response.Cache.SetNoStore();
 
+            if (Session["UserID"] != null)
+            {
+                // If logged in, redirect to the User Dashboard
+                Response.Redirect("UserDashboard.aspx");
+            }
         }
 
         protected void Loginbtn_Click(object sender, EventArgs e)

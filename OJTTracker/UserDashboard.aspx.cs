@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web;
 
 namespace OJTTracker
 {
@@ -10,6 +11,7 @@ namespace OJTTracker
 
         protected void Page_Load(object sender, EventArgs e)
         {
+           
             if (!IsPostBack)
             {
                 if (Session["UserID"] == null)
@@ -20,6 +22,7 @@ namespace OJTTracker
                 LoadTimeLogs();
                 LoadUserProfile();
             }
+           
         }
 
         private void LoadUserProfile()
