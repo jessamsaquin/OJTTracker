@@ -8,7 +8,40 @@ body {
     padding: 0;
     
 }
+.auto-style1 {
+    height: 35px;
+    color: black;
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
 
+.user-prof {
+    display: flex;
+    justify-content: space-between; /* Place items on opposite ends */
+    align-items: center;
+    padding: 10px;
+    background-color: #f1f1f1;
+}
+
+.left-side {
+    display: flex;
+    align-items: center;
+}
+
+.right-side {
+    display: flex;
+    align-items: center;
+}
+
+.logout-label {
+    background-color: #3d3b68;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 10px;
+}
 
 
 .container {
