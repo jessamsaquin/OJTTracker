@@ -11,6 +11,22 @@ namespace OJTTracker
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if (Session["UserID"] == null)
+                {
+                    Response.Redirect("Login.aspx"); // Redirect if not logged in
+                    return;
+                }
+            }
+        }
+
+        protected void LblLogout(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Session.Clear();
+
+            Response.Redirect("Login.aspx");
 
         }
     }

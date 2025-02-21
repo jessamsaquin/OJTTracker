@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="UserDashboard.css" />
     <title>User Dashboard</title>
-      
-    
+
+
     <style type="text/css">
        .auto-style1 {
         height: 35px;
@@ -22,18 +22,16 @@
         display: flex;
         justify-content: space-between; /* Place items on opposite ends */
         align-items: center;
-        padding:  10px;
+        padding: 10px;
         background-color: #f1f1f1;
     }
     .left-side {
         display: flex;
         align-items: center;
-        margin-left: 5%;
     }
     .right-side {
         display: flex;
         align-items: center;
-        margin-right: 5%;
     }
     .logout-label {
         background-color: #3d3b68;
@@ -41,24 +39,20 @@
         padding: 5px 10px;
         cursor: pointer;
         border-radius: 10px;
-        text-decoration: none;
-    }
-    .logout-label:hover{
-        background-color: #2f2d4f;
     }
     </style>
-  
-    
+
+
 </head>
 <body>
-   
+
 
 
     <form id="form1" runat="server">
          <div class="auto-style1">
   <div class="user-prof">
     <div class="left-side">
-       <asp:Image ID="Image1" runat="server" />
+        <asp:Image ID="Image1" runat="server" />
         <asp:Label ID="lblProfilename" runat="server" Text=""></asp:Label>
     </div>
     <div class="right-side">
@@ -70,23 +64,23 @@
         
         <div class="container">
             <h2>⏳ Time Tracking Dashboard</h2>
-            
+
             <!-- Total Hours Worked -->
             <div class="card">
-    <div class="card1"> 
-        <div class="card-header">Hours Today</div>
-        <h3 style="color: white; font-weight: bold;">
-            <asp:Label ID="lblTotalHours" runat="server" Text="0 hrs"></asp:Label>
-        </h3>
-    </div>
-    
-    <div class="card2"> 
-        <div class="card-header">Total Hours</div>
-        <h3 style="color: white; font-weight: bold;">
-            <asp:Label ID="lblTotalHoursWorked" runat="server" Text="0 hrs"></asp:Label>
-        </h3>
-    </div>
-</div>
+                <div class="card1">
+                    <div class="card-header">Hours Today</div>
+                    <h3 style="color: white; font-weight: bold;">
+                        <asp:Label ID="lblTotalHours" runat="server" Text="0 hrs"></asp:Label>
+                    </h3>
+                </div>
+
+                <div class="card2">
+                    <div class="card-header">Total Hours</div>
+                    <h3 style="color: white; font-weight: bold;">
+                        <asp:Label ID="lblTotalHoursWorked" runat="server" Text="0 hrs"></asp:Label>
+                    </h3>
+                </div>
+            </div>
 
             <!-- Time In/Out Buttons -->
             <div class="button-container">
@@ -95,7 +89,7 @@
                 <asp:Button ID="btnBreakOut" runat="server" CssClass="btn btn-blue" Text="🍽️ Break Out" OnClick="btnBreakOut_Click" />
                 <asp:Button ID="btnTimeOut" runat="server" CssClass="btn btn-red" Text="🚪 Time Out" OnClick="btnTimeOut_Click" />
             </div>
-            
+
             <!-- Time Log Table -->
             <div class="table-container">
                 <asp:GridView ID="gvTimeLogs" runat="server" CssClass="table" AutoGenerateColumns="False">
@@ -108,7 +102,7 @@
                     </Columns>
                 </asp:GridView>
             </div>
-            
+
             <!-- Message Label -->
             <div class="message">
                 <asp:Label ID="lblMessage" runat="server"></asp:Label>
