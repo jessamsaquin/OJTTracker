@@ -12,10 +12,18 @@ namespace OJTTracker
             Response.Cache.SetCacheability(HttpCacheability.NoCache); // Corrected line
             Response.Cache.SetNoStore();
 
-            if (Session["UserID"] != null)
+            if (Session["UserID"] != null && Session["UserRole"] != null)
             {
-                // If logged in, redirect to the User Dashboard
-                Response.Redirect("UserDashboard.aspx");
+                string role = Session["UserRole"].ToString();
+
+                if (role == "Admin")
+                {
+                    Response.Redirect("AdminDashboard.aspx");
+                }
+                else
+                {
+                    Response.Redirect("UserDashboard.aspx");
+                }
             }
         }
 
