@@ -20,5 +20,14 @@ namespace OJTTracker
                 }
             }
         }
+
+        protected void LblLogout(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Session.Clear();
+
+            Response.Redirect("Login.aspx");
+
+        }
     }
 }
