@@ -22,16 +22,18 @@
         display: flex;
         justify-content: space-between; /* Place items on opposite ends */
         align-items: center;
-        padding: 10px;
+        padding:  10px;
         background-color: #f1f1f1;
     }
     .left-side {
         display: flex;
         align-items: center;
+        margin-left: 5%;
     }
     .right-side {
         display: flex;
         align-items: center;
+        margin-right: 5%;
     }
     .logout-label {
         background-color: #3d3b68;
@@ -39,6 +41,10 @@
         padding: 5px 10px;
         cursor: pointer;
         border-radius: 10px;
+        text-decoration: none;
+    }
+    .logout-label:hover{
+        background-color: #2f2d4f;
     }
     </style>
   
@@ -52,7 +58,7 @@
          <div class="auto-style1">
   <div class="user-prof">
     <div class="left-side">
-        <asp:Image ID="Image1" runat="server" />
+       <asp:Image ID="Image1" runat="server" />
         <asp:Label ID="lblProfilename" runat="server" Text=""></asp:Label>
     </div>
     <div class="right-side">
