@@ -63,6 +63,35 @@
             </div>
         </div>
 
+        <div class="container">
+        <h2>Admin Dashboard</h2>
+
+        <div class="stats">
+            <div class="box">
+                <h3>Total Interns</h3>
+                <asp:Label ID="lblTotalInterns" runat="server" Text="0"></asp:Label>
+            </div>
+            <div class="box">
+                <h3>Active Interns</h3>
+                <asp:Label ID="lblActiveInterns" runat="server" Text="0"></asp:Label>
+            </div>
+            <div class="box">
+                <h3>Total Logs</h3>
+                <asp:Label ID="lblTotalLogs" runat="server" Text="0"></asp:Label>
+            </div>
+        </div>
+
+        <h3>Intern List</h3>
+        <asp:GridView ID="gvInterns" runat="server" AutoGenerateColumns="False">
+            <Columns>
+                <asp:BoundField DataField="UserID" HeaderText="ID" />
+                <asp:BoundField DataField="Name" HeaderText="Name" />
+                <asp:BoundField DataField="Email" HeaderText="Email" />
+                <asp:BoundField DataField="CreatedAt" HeaderText="Status" />
+            </Columns>
+        </asp:GridView>
+    </div>
+
     </form>
 </body>
 </html>
