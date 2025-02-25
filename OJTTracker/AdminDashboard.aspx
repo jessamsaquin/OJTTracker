@@ -9,43 +9,7 @@
     <title>Admin Dashboard</title>
 
     <style type="text/css">
-        .auto-style1 {
-            height: 35px;
-            color: black;
-            background-color: white;
-            position: fixed;
-            width: 100%;
-            top: 0;
-        }
-
-        .user-prof {
-            display: flex;
-            justify-content: space-between; /* Place items on opposite ends */
-            align-items: center;
-            padding: 10px;
-            background-color: #f1f1f1;
-        }
-
-        .left-side {
-            display: flex;
-            align-items: center;
-            margin-left: 5%;
-        }
-
-        .right-side {
-            display: flex;
-            align-items: center;
-            margin-right: 5%;
-        }
-
-        .logout-label {
-            background-color: #3d3b68;
-            color: white;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 10px;
-            text-decoration: none;
-        }
+        
     </style>
 </head>
 
