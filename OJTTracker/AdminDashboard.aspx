@@ -67,8 +67,23 @@
                 <h3>Add New Intern</h3>
                 <asp:TextBox ID="txtName" runat="server" CssClass="form-control" Placeholder="Enter Name"></asp:TextBox><br />
                 <br />
-                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" Placeholder="Enter Email"></asp:TextBox><br />
+                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" Placeholder="Enter Email"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" 
+    ErrorMessage="*" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail"
+    ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+    ErrorMessage="Please enter a valid email address" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator><br />
                 <br />
+                <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" Placeholder="Enter Password" TextMode="Password"></asp:TextBox><br />
+                <br />
+                <asp:CheckBox ID="chkShowPassword" runat="server" AutoPostBack="true" OnCheckedChanged="chkShowPasswordchange" Text="Show Password" />
+                <br />
+                <br />
+
+                <asp:DropDownList ID="ddlRole" runat="server" CssClass="form-control">
+                    <asp:ListItem Text="User" Value="User"></asp:ListItem>
+                    <asp:ListItem Text="Admin" Value="Admin"></asp:ListItem>
+                </asp:DropDownList>
                 <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
                 <asp:Button ID="btnClose" runat="server" Text="Close" OnClick="btnClose_Click" />
             </asp:Panel>

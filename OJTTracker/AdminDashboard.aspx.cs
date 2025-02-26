@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Security.Cryptography;
-using System.Text;
-using System.Collections;
+using Microsoft.AspNetCore.Identity;
 
 namespace OJTTracker
 {
@@ -82,6 +75,18 @@ namespace OJTTracker
         protected void AddNewbtn(object sender, EventArgs e)
         {
             Popuppnl.Visible = true;
+
+            txtName.Text = "";
+            txtEmail.Text = "";
+            txtPassword.Text = "";
+            ddlRole.SelectedIndex = 0;
+
+            }
+
+        private object GetHash(string password)
+        {
+            var hasher = new PasswordHasher<object>();
+            return hasher.HashPassword(null, password);
         }
 
         protected void btnClose_Click(object sender, EventArgs e)
@@ -91,7 +96,34 @@ namespace OJTTracker
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            Popuppnl.Visible = false;
+            if (Page.IsValid)
+            {
+                string connectionString = "Data Source=JESSA\\SQLEXPRESS;Initial Catalog=OJTTrackerDB;Integrated Security=True;Encrypt=False";
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string query = "INSERT INTO Users (Name, Email, PasswordHash, Role, CreatedAt) VALUES (@Name, @Email, @PasswordHash, @Role, @CreatedAt)";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        conn.Open();
+                        cmd.Parameters.AddWithValue("@Name", txtName.Text);
+                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        cmd.Parameters.AddWithValue("@PasswordHash", GetHash(txtPassword.Text));
+                        cmd.Parameters.AddWithValue("@Role", ddlRole.SelectedValue);
+                        cmd.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                Popuppnl.Visible = false;
+
+                // Refresh GridView
+                LoadInternList();
+            }
+        }
+
+        protected void chkShowPasswordchange(object sender, EventArgs e)
+        {
+            txtPassword.TextMode = chkShowPassword.Checked ? TextBoxMode.SingleLine : TextBoxMode.Password;
         }
     }
 }
