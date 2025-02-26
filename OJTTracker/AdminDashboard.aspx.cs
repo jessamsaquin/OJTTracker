@@ -7,6 +7,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Security.Cryptography;
+using System.Text;
+using System.Collections;
 
 namespace OJTTracker
 {
@@ -14,6 +17,7 @@ namespace OJTTracker
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 if (Session["UserID"] == null)
@@ -21,8 +25,8 @@ namespace OJTTracker
                     Response.Redirect("Login.aspx"); // Redirect if not logged in
                     return;
                 }
-              
-               LoadInternList();
+                
+                LoadInternList();
                 lblTotalInterns.Text = GetTotalInternCount().ToString();
             }
         }
@@ -73,6 +77,21 @@ namespace OJTTracker
                     }
                 }
             }
+        }
+
+        protected void AddNewbtn(object sender, EventArgs e)
+        {
+            Popuppnl.Visible = true;
+        }
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Popuppnl.Visible = false;
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            Popuppnl.Visible = false;
         }
     }
 }
