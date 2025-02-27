@@ -15,10 +15,10 @@ This is a **self-learn** project where I am exploring **ASP.NET** while continuo
 - **Database:** Microsoft SQL Server (MSSQL)
 
 ## Current Progress & Next Steps
--🚧 Ongoing Development
--✅ Admin can add users
--🔜 Edit/Delete functionality for users
--🔜 More role-based access control
+- 🚧 Ongoing Development
+- ✅ Admin can add users
+- 🔜 Edit/Delete functionality for users
+- 🔜 More role-based access control
 
 ## Notes
 This project is a **work in progress**, and I am open to feedback or suggestions. Feel free to check out the repository and follow along as I learn and improve!
