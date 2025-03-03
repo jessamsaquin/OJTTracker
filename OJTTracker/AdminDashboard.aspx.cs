@@ -56,7 +56,7 @@ namespace OJTTracker
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT UserID, Name, Email, CreatedAt FROM Users WHERE Role = 'User'";
+                string query = "SELECT UserID, Name, Email, Role, CreatedAt FROM Users WHERE Role = 'User'";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -116,14 +116,130 @@ namespace OJTTracker
 
                 Popuppnl.Visible = false;
 
-                // Refresh GridView
+                
                 LoadInternList();
+                lblTotalInterns.Text = GetTotalInternCount().ToString();
             }
         }
 
         protected void chkShowPasswordchange(object sender, EventArgs e)
         {
             txtPassword.TextMode = chkShowPassword.Checked ? TextBoxMode.SingleLine : TextBoxMode.Password;
+        }
+        
+        protected void EditIntern(object sender, EventArgs e)
+        {
+           
+            LinkButton lnkButton = sender as LinkButton;
+            GridViewRow gvRow = lnkButton.NamingContainer as GridViewRow;
+
+            
+            string userID = gvInterns.DataKeys[gvRow.RowIndex].Value.ToString();
+
+            
+            PopulateEditForm(userID);
+
+            
+            EditPopupPanel.Visible = true;
+        }
+
+        private void PopulateEditForm(string userID)
+        {
+            string connectionString = "Data Source=JESSA\\SQLEXPRESS;Initial Catalog=OJTTrackerDB;Integrated Security=True;Encrypt=False";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT UserID, Name, Email, Role FROM Users WHERE UserID = @UserID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@UserID", userID);
+
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            txtEditUserID.Text = reader["UserID"].ToString();
+                            txtEditName.Text = reader["Name"].ToString();
+                            txtEditEmail.Text = reader["Email"].ToString();
+                            ddlEditRole.SelectedValue = reader["Role"].ToString();
+                        }
+                    }
+                }
+            }
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                string connectionString = "Data Source=JESSA\\SQLEXPRESS;Initial Catalog=OJTTrackerDB;Integrated Security=True;Encrypt=False";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string query;
+                    SqlCommand cmd;
+                    
+                    if (string.IsNullOrEmpty(txtEditPassword.Text))
+                    {// Update without new password
+                        query = "UPDATE Users SET Name = @Name, Email = @Email, Role = @Role WHERE UserID = @UserID";
+                        cmd = new SqlCommand(query, conn);
+                    }
+                    else
+                    {
+                        // Update with new password
+                        query = "UPDATE Users SET Name = @Name, Email = @Email, PasswordHash = @PasswordHash, Role = @Role WHERE UserID = @UserID";
+                        cmd = new SqlCommand(query, conn);
+                        cmd.Parameters.AddWithValue("@PasswordHash", GetHash(txtEditPassword.Text));
+                    }
+
+                    cmd.Parameters.AddWithValue("@UserID", txtEditUserID.Text);
+                    cmd.Parameters.AddWithValue("@Name", txtEditName.Text);
+                    cmd.Parameters.AddWithValue("@Email", txtEditEmail.Text);
+                    cmd.Parameters.AddWithValue("@Role", ddlEditRole.SelectedValue);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                
+                LoadInternList();
+                EditPopupPanel.Visible = false;
+            }
+        }
+
+        protected void btnCloseEdit_Click(object sender, EventArgs e)
+        {
+            EditPopupPanel.Visible = false;
+        }
+
+        protected void DeleteIntern(object sender, EventArgs e)
+        {
+           
+            LinkButton lnkButton = sender as LinkButton;
+            GridViewRow gvRow = lnkButton.NamingContainer as GridViewRow;
+
+            
+            string userID = gvInterns.DataKeys[gvRow.RowIndex].Value.ToString();
+
+            string connectionString = "Data Source=JESSA\\SQLEXPRESS;Initial Catalog=OJTTrackerDB;Integrated Security=True;Encrypt=False";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "DELETE FROM Users WHERE UserID = @UserID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@UserID", userID);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            LoadInternList();
+            lblTotalInterns.Text = GetTotalInternCount().ToString();
         }
     }
 }

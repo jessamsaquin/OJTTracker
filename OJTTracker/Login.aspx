@@ -21,7 +21,7 @@
                 <h2>🔐 Login</h2>
                 <table>
                     <tr>
-                        <td class="auto-style1"><asp:Label ID="txtUsernamelbl" runat="server" Text="Username: "></asp:Label></td> </tr>
+                        <td class="auto-style1"><asp:Label ID="txtUsernamelbl" runat="server" Text="Email: "></asp:Label></td> </tr>
                         <tr><td><asp:TextBox ID="username" runat="server"></asp:TextBox></td></tr>
                    
                     <tr>

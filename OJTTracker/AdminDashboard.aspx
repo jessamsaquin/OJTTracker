@@ -158,7 +158,7 @@
                 max-width: 80%;
                 
             }
-        }
+            
     </style>
 </head>
 
@@ -182,21 +182,23 @@
             <div class="stats">
                 <div class="box">
                     <h3>Total Interns</h3>
-                    <asp:Label ID="lblTotalInterns" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="lblTotalInterns" runat="server" Text="0" style="color: blue; font-weight: bold;"></asp:Label>
                 </div>
                 <div class="box">
                     <h3>Active Interns</h3>
-                    <asp:Label ID="lblActiveInterns" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="lblActiveInterns" runat="server" Text="0" style="color: green; font-weight: bold;"></asp:Label>
                 </div>
                 <div class="box">
                     <h3>Total Logs</h3>
-                    <asp:Label ID="lblTotalLogs" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="lblTotalLogs" runat="server" Text="0" style="color: red; font-weight: bold;"></asp:Label>
                 </div>
             </div>
 
-
+            
             <asp:LinkButton ID="btnAddNew" runat="server" Text="Add New Intern" class="btn" OnClick="AddNewbtn"></asp:LinkButton>
+               
 
+            
             <asp:Panel ID="Popuppnl" runat="server" CssClass="popup-container" BorderStyle="Solid" Visible="false">
                 <h3>Add New Intern</h3>
                 <asp:TextBox ID="txtName" runat="server" CssClass="form-control" Placeholder="Enter Name"></asp:TextBox><br />
@@ -221,13 +223,60 @@
                 <asp:Button ID="btnClose" runat="server" Text="Close" OnClick="btnClose_Click" />
             </asp:Panel>
 
+
+
+            <!-- Edit Intern Popup -->
+            <asp:Panel ID="EditPopupPanel" runat="server" CssClass="popup-container" BorderStyle="Solid" Visible="false">
+                <h3>Edit Intern</h3>
+
+                <!-- ID (Hidden) -->
+                <asp:TextBox ID="txtEditUserID" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
+
+                <!-- Name -->
+                <asp:TextBox ID="txtEditName" runat="server" CssClass="form-control" Placeholder="Enter Name"></asp:TextBox><br />
+
+                <!-- Email -->
+                <asp:TextBox ID="txtEditEmail" runat="server" CssClass="form-control" Placeholder="Enter Email"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvEditEmail" runat="server" ControlToValidate="txtEditEmail"
+                    ErrorMessage="*" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator><br />
+                <asp:RegularExpressionValidator ID="revEditEmail" runat="server" ControlToValidate="txtEditEmail"
+                    ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                    ErrorMessage="Please enter a valid email address" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+                
+                <!-- Password (Optional) -->
+                <asp:TextBox ID="txtEditPassword" runat="server" CssClass="form-control" Placeholder="Enter New Password (leave blank to keep current)" TextMode="Password"></asp:TextBox><br />
+                
+                <!-- Role -->
+                <asp:DropDownList ID="ddlEditRole" runat="server" CssClass="form-control">
+                    <asp:ListItem Text="User" Value="User"></asp:ListItem>
+                    <asp:ListItem Text="Admin" Value="Admin"></asp:ListItem>
+                </asp:DropDownList>
+
+                <!-- Buttons -->
+                <div class="popup-buttons">
+                    <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn" OnClick="btnUpdate_Click" />
+                    <asp:Button ID="btnCloseEdit" runat="server" Text="Close" CssClass="btn" OnClick="btnCloseEdit_Click" />
+                </div>
+            </asp:Panel>
+
             <h3>Intern List</h3>
-            <asp:GridView ID="gvInterns" runat="server" AutoGenerateColumns="False">
+            <asp:GridView ID="gvInterns" runat="server" AutoGenerateColumns="False" DataKeyNames="UserID">
                 <Columns>
                     <asp:BoundField DataField="UserID" HeaderText="ID" />
                     <asp:BoundField DataField="Name" HeaderText="Name" />
                     <asp:BoundField DataField="Email" HeaderText="Email" />
-                    <asp:BoundField DataField="CreatedAt" HeaderText="Status" />
+                    <asp:BoundField DataField="Role" HeaderText="Role" />
+                    <asp:BoundField DataField="CreatedAt" HeaderText="Created Date" DataFormatString="{0:MMM dd, yyyy}" />
+
+                    <asp:TemplateField HeaderText="Actions">
+                        <ItemTemplate>
+                            <div class="action-links">
+                                <asp:LinkButton ID="Editbtn" runat="server" Text="Edit" OnClick="EditIntern"></asp:LinkButton>
+                                <asp:LinkButton ID="Delbtn" runat="server" Text="Delete" CssClass="delete-link" 
+                                    OnClick="DeleteIntern" OnClientClick="return confirm('Are you sure you want to delete this intern?');"></asp:LinkButton>
+                            </div>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </div>
