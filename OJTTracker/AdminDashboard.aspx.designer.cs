@@ -87,6 +87,15 @@ namespace OJTTracker
         protected global::System.Web.UI.WebControls.LinkButton btnAddNew;
 
         /// <summary>
+        /// txtSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearch;
+
+        /// <summary>
         /// Popuppnl control.
         /// </summary>
         /// <remarks>

@@ -138,27 +138,51 @@
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             .user-prof {
                 flex-direction: column;
             }
-            
+
             .left-side, .right-side {
                 margin-bottom: 10px;
             }
-            
+
             .container {
                 padding: 0 10px;
             }
-            
+
             h2 {
                 font-size: 20px;
             }
-            .box{
+
+            .box {
                 max-width: 80%;
-                
             }
-            
+        }
+        .top-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds spacing between elements */
+}
+
+.btn {
+    padding: 8px 15px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.search-box {
+    padding: 8px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
     </style>
 </head>
 
@@ -194,9 +218,10 @@
                 </div>
             </div>
 
-            
+            <div class="addsearch">
             <asp:LinkButton ID="btnAddNew" runat="server" Text="Add New Intern" class="btn" OnClick="AddNewbtn"></asp:LinkButton>
-               
+             <asp:TextBox ID="txtSearch" runat="server" CssClass="search-box" AutoPostBack="true" Placeholder="Search..." OnTextChanged="txtSearch_TextChanged"></asp:TextBox>
+            </div>
 
             
             <asp:Panel ID="Popuppnl" runat="server" CssClass="popup-container" BorderStyle="Solid" Visible="false">

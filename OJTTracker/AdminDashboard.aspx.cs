@@ -10,7 +10,7 @@ namespace OJTTracker
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             if (!IsPostBack)
             {
                 if (Session["UserID"] == null)
@@ -18,9 +18,10 @@ namespace OJTTracker
                     Response.Redirect("Login.aspx"); // Redirect if not logged in
                     return;
                 }
-                
+
                 LoadInternList();
                 lblTotalInterns.Text = GetTotalInternCount().ToString();
+                BindGrid();
             }
         }
 
@@ -81,7 +82,7 @@ namespace OJTTracker
             txtPassword.Text = "";
             ddlRole.SelectedIndex = 0;
 
-            }
+        }
 
         private object GetHash(string password)
         {
@@ -116,7 +117,7 @@ namespace OJTTracker
 
                 Popuppnl.Visible = false;
 
-                
+
                 LoadInternList();
                 lblTotalInterns.Text = GetTotalInternCount().ToString();
             }
@@ -126,20 +127,20 @@ namespace OJTTracker
         {
             txtPassword.TextMode = chkShowPassword.Checked ? TextBoxMode.SingleLine : TextBoxMode.Password;
         }
-        
+
         protected void EditIntern(object sender, EventArgs e)
         {
-           
+
             LinkButton lnkButton = sender as LinkButton;
             GridViewRow gvRow = lnkButton.NamingContainer as GridViewRow;
 
-            
+
             string userID = gvInterns.DataKeys[gvRow.RowIndex].Value.ToString();
 
-            
+
             PopulateEditForm(userID);
 
-            
+
             EditPopupPanel.Visible = true;
         }
 
@@ -180,7 +181,7 @@ namespace OJTTracker
                 {
                     string query;
                     SqlCommand cmd;
-                    
+
                     if (string.IsNullOrEmpty(txtEditPassword.Text))
                     {// Update without new password
                         query = "UPDATE Users SET Name = @Name, Email = @Email, Role = @Role WHERE UserID = @UserID";
@@ -203,7 +204,7 @@ namespace OJTTracker
                     cmd.ExecuteNonQuery();
                 }
 
-                
+
                 LoadInternList();
                 EditPopupPanel.Visible = false;
             }
@@ -216,11 +217,11 @@ namespace OJTTracker
 
         protected void DeleteIntern(object sender, EventArgs e)
         {
-           
+
             LinkButton lnkButton = sender as LinkButton;
             GridViewRow gvRow = lnkButton.NamingContainer as GridViewRow;
 
-            
+
             string userID = gvInterns.DataKeys[gvRow.RowIndex].Value.ToString();
 
             string connectionString = "Data Source=JESSA\\SQLEXPRESS;Initial Catalog=OJTTrackerDB;Integrated Security=True;Encrypt=False";
@@ -241,5 +242,37 @@ namespace OJTTracker
             LoadInternList();
             lblTotalInterns.Text = GetTotalInternCount().ToString();
         }
+
+
+
+        protected void BindGrid(string searchText = "")
+        {
+            string connectionString = "Data Source=JESSA\\SQLEXPRESS;Initial Catalog=OJTTrackerDB;Integrated Security=True;Encrypt=False";
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "SELECT UserID, Name, Email, Role, CreatedAt FROM Users WHERE Role = 'User' AND (Name LIKE @Search OR Email LIKE @Search)";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Search", "%" + searchText + "%");
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    gvInterns.DataSource = dt;
+                    gvInterns.DataBind();
+                }
+            }
+        }
+
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            BindGrid(txtSearch.Text.Trim()); // Call BindGrid with search text
+        }
     }
-}
+    }
+
+       
+    // <-- This properly closes the `AdminDashboard` class. REMOVE any extra `}` after this!
