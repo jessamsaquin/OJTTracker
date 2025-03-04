@@ -17,8 +17,13 @@ This is a **self-learn** project where I am exploring **ASP.NET** while continuo
 ## Current Progress & Next Steps
 - 🚧 Ongoing Development
 - ✅ Admin can add users
-- 🔜 Edit/Delete functionality for users
+- ✅ Edit/Delete functionality for admin
 - 🔜 More role-based access control
+
+
+📌 Watch my latest OJT Tracker update on YouTube:
+
+[![OJT Tracker Update](https://img.youtube.com/vi/BhpFRUEI6BM/0.jpg)](https://www.youtube.com/watch?v=BhpFRUEI6BM)
 
 ## Notes
 This project is a **work in progress**, and I am open to feedback or suggestions. Feel free to check out the repository and follow along as I learn and improve!
